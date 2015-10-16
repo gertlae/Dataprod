@@ -1,0 +1,17 @@
+{
+    "contents" : "## load libs\nlibrary(caret)\n## building the model\n\ndata(mtcars)\nintrain = createDataPartition(mtcars$mpg, p = 4/5, list = FALSE)\ntrain = mtcars[intrain,]\ntest = mtcars[-intrain,]\nmodelfit <- train(train$mpg ~ cyl+hp+wt+am+gear, method=\"glm\", data=train)\nprediction =predict(modelfit,input)\n\n# calculate the RMSE on training and test\nTrainRMSE = sqrt(sum(modelfit$fitted- train$mpg)^2)\nTestRMSE = sqrt(sum(predict(modelfit, newdata = test) - test$mpg)^2)\n\n\nmodelfit= train(train$mpg ~ cyl+hp+wt+am+gear, method=\"glm\", data=train)\ninput = NULL\ninput$cyl = 4 #nbr of cylinders (4, 6 or 8)\ninput$hp = 130 # Gross horsepower\ninput$wt = 3.000 #Weight (lb/1000)\ninput$am = 1 #Transmission (0 = automatic, 1 = manual)\ninput$gear = 4 #Number of forward gears ( 3,4 or 5)\n\n\n# result = cbind(prediction, test[,1])\n# \n# mse = sqrt(sum((prediction-test[,1])^2)/11)\n# \n# mse / mean(mtcars$mpg)\n# \n# prediction2 =predict(modelfit,train[,c(2,4,6,9,10)])\n# \n# result2 = cbind(prediction2, train[,1])\n# \n# mse2 = sqrt(sum((prediction2-train[,1])^2)/11)\n# \n# mse2 / mean(mtcars$mpg)\n",
+    "created" : 1444996985014.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3249167432",
+    "id" : "5523B641",
+    "lastKnownWriteTime" : 1445004677,
+    "path" : "C:/EDS/DSS/Dataprod/modelbuilding.R",
+    "project_path" : "modelbuilding.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

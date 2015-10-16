@@ -1,0 +1,17 @@
+{
+    "contents" : "library(caret)\ndata(mtcars)\n\n\nfeaturePlot(x=mtcars,\n            y = mtcars$mpg,\n            plot=\"pairs\")\n\n",
+    "created" : 1444997282861.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1206376807",
+    "id" : "F2A4B40F",
+    "lastKnownWriteTime" : 1444999217,
+    "path" : "C:/EDS/DSS/Dataprod/explore graph.R",
+    "project_path" : "explore graph.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

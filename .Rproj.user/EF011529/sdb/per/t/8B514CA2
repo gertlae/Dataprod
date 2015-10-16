@@ -1,0 +1,16 @@
+{
+    "contents" : "The miles per gallon (mpg) app\n========================================================\nauthor: glae\ndate: 16 October 2015\n\nWhy an mpg app ?\n========================================================\n\nThese days it has become clear that the data provided by car manufacturers cannot always be trusted. Nevertheless when you need to buy a new car, fuel consumption is an important feature.\n\n- The mpg predictor app predicts the expected mpg for a car based on some key features such as number of cylinders, horespower etc. \n- Not based on biased manufacturer data but on linear reqression model based on independent data provided by \"1974 Motor Trend US magazine\".\n- Allows to quickly calculate the expected mpg for several cars to help you make your final choice.  \n\nHow to use the mpg app ?  \n========================================================\n- Input panel and output panel\n- Help text at bottom of each panel  \n![alt text](mpgapp.png)\n\nHow was the prediction model built ?\n========================================================\n- Exploratory analysis to select the predictors.    \n\n```{r, echo = FALSE, fig.height=5,fig.width=5}\nlibrary(caret)\ndata(mtcars)\nfeaturePlot(x=mtcars, y = mtcars$mpg, plot=\"pairs\")\n```  \n\n- Code used to determine the model.  \n<font size= \"5\">\n```{r,eval=FALSE}\nintrain = createDataPartition(mtcars$mpg, p = 4/5, list = FALSE)\ntrain = mtcars[intrain,]\ntest = mtcars[-intrain,]\n#cache modelfit in global environment so it can be reused\nmodelfit <<- train(train$mpg ~ cyl+hp+wt+am+gear, method=\"glm\", data=train)\n```  \n</font>\nLimitations\n========================================================\n- Sample size of mtcars is too small , nbr of observations \n<font size= \"5\">\n```{r,echo=FALSE}\ndim(mtcars)[1] \n```\n</font>\n- So the model is overfitted to this sample\n<font size= \"5\"> \n```{r,eval=FALSE}\n# calculate the RMSE on training and test\nTrainRMSE = sqrt(sum(modelfit$fitted- train$mpg)^2)\nTestRMSE = sqrt(sum(predict(modelfit, newdata = test) - test$mpg)^2)\n```\n</font>\n<font size= \"5\">\n```{r,echo=FALSE}\n## load libs\nlibrary(caret)\n## building the model\nset.seed(12345)\ndata(mtcars)\nintrain = createDataPartition(mtcars$mpg, p = 4/5, list = FALSE)\ntrain = mtcars[intrain,]\ntest = mtcars[-intrain,]\nmodelfit <- train(train$mpg ~ cyl+hp+wt+am+gear, method=\"glm\", data=train)\n# calculate the RMSE on training\nTrainRMSE = sqrt(sum(modelfit$fitted- train$mpg)^2)\n# calculate the RMSE on test\nTestRMSE = sqrt(sum(predict(modelfit, newdata = test) - test$mpg)^2)\nout = NULL\nout$TrainRMSE = TrainRMSE\nout$TestRMSE = TestRMSE\nout\n``` \n</font>\n- Need more and more recent data !\n",
+    "created" : 1444988545408.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "523512821",
+    "id" : "8B514CA2",
+    "lastKnownWriteTime" : 1445005389,
+    "path" : "C:/EDS/DSS/Dataprod/aboutcarpredictor.Rpres",
+    "project_path" : "aboutcarpredictor.Rpres",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_presentation"
+}

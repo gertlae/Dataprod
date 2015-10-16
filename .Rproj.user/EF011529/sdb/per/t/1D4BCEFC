@@ -1,0 +1,17 @@
+{
+    "contents" : "library(shiny)\nshinyUI(fluidPage(\ntitlePanel(h1(\"Miles per gallon predictor\", align = \"center\")),\ntags$hr(),\nsidebarLayout(\n        sidebarPanel(\n                h3(\"Input panel\"),\n                radioButtons(inputId =\"cyl\", label =\"Nbr of cylinders\", choices = c(4,6,8)),\n                sliderInput(inputId = \"hp\", label ='Horsepower', value = 190, min = 60, max = 330),\n                numericInput(inputId = \"wt\" , min = 2, max = 4, label =\"Weight in (lb/1000)\", value = 3, step = .1),\n                selectInput(inputId = \"am\" ,  label = 'Transmission', choice = c(\"Automatic\" = 0, \"Manual\" = 1)),\n                radioButtons(inputId =\"gear\", label =\"Number of forward gears\", choices = c(3,4,5)),\n                submitButton(\"Update\"),\n                helpText(\"Input key parameters of your car in this panel. Enter the parameters and hit update\")\n                ),\n        mainPanel(h2('The predicted miles per gallon amount to', align = \"center\"),\n                h2(strong(em(textOutput(\"prediction\"))), align = \"center\"),\n                plotOutput('newHist'),\n                h4('Parameter values used in calculation'),\n                h4(textOutput(\"param\", inline = T)),\n                helpText(\"This panel displays the predicted miles per gallon for a car based on a glm model derived from the mtcars data using \n                         number of cylinders, horsepower , weight , transmission and number of forward gears. \n                         The histogram compares the prediction versus the mtcars sample data. \n                         Parameter values used to calculate the prediction are displayed for your reference.\")\n                \n                )\n        )        \n))\n",
+    "created" : 1444946901890.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1301999805",
+    "id" : "1D4BCEFC",
+    "lastKnownWriteTime" : 1444960109,
+    "path" : "C:/EDS/DSS/Dataprod/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
